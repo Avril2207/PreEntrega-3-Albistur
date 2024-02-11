@@ -48,9 +48,6 @@
                   d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
                 />
               </svg>
-              <div class="count-products">
-                <span id="contador-productos">0</span>
-              </div>
       
               <div class="container-cart-products hidden-cart">
                 <div class="row-product">
@@ -79,7 +76,7 @@
                 
                           <div class="cart-total">
                               <h3>Total:</h3>
-                              <span class="total-pagar">$200</span>
+                              <span class="total-pagar" id="total-pagar"></span>
                           </div>
               </div>
             </div>
@@ -108,81 +105,8 @@
       </div>
 
       <!-- PRODUCTOS -->
-      <section class="productos" id="productos">
-        <div class="container_productos">
-          <div class="card" style="width: 18rem;">
-            <img src="./img/torta láminas de chocolate bicolor.jpg" class="card-img-top" alt="torta láminas de chocolate bicolor">
-            <div class="card-body">
-              <h1 class="card-price">$105</h1>
-              <p class="card-text">Torta Láminas de Chocolate Bicolor</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" id="img_agrandar" style="width: 19rem;">
-            <img src="./img/tarta de frutos rojos.jpg" class="card-img-top"  alt="tarta de frutos rojos">
-            <div class="card-body">
-              <h1 class="card-price">$45</h1>
-              <p class="card-text">Tarta de Frutos Rojos</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./img/crumble de frutos rojos.jpg" class="card-img-top" alt="Tarta de frutos rojos con crumble">
-            <div class="card-body">
-              <h1 class="card-price">$90</h1>
-              <p class="card-text">Tarta de Frutos Rojos con Crumble</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./img/brownie.jpg" class="card-img-top" alt="Brownie de chocolate">
-            <div class="card-body">
-              <h1 class="card-price">$50</h1>
-              <p class="card-text">Brownie de Chocolate</p>
-              <button class="card-boton" id=boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" id="img_ajuste" style="width: 18rem;">
-            <img src="./img/Torta Red Velvet Con crema queso.jpg" class="card-img-top" alt="arta Red Velvet con Crema de Queso">
-            <div class="card-body">
-              <h1 class="card-price">$70</h1>
-              <p class="card-text">Tarta Red Velvet con Crema de Queso</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./img/pasta frola.jpg" class="card-img-top" alt="Pasta frola de membrillo">
-            <div class="card-body">
-              <h1 class="card-price">$70</h1>
-              <p class="card-text">Pasta Frola</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" id="img_agrandar" style="width: 19rem;">
-            <img src="./img/Carrot Cake.jpg" class="card-img-top" alt="Carrot Cake">
-            <div class="card-body">
-              <h1 class="card-price">$75</h1>
-              <p class="card-text">Carrot Cake</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./img/cookie.jpg" class="card-img-top" alt="Cookies con Chispas de chocolate">
-            <div class="card-body">
-              <h1 class="card-price">$20</h1>
-              <p class="card-text">Cookies con Chispas</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem;">
-            <img src="./img/Cupecakes.jpg" class="card-img-top" alt="Cupecakes de oreo">
-            <div class="card-body">
-              <h1 class="card-price">$50</h1>
-              <p class="card-text">Cupecakes de Oreo</p>
-              <button class="card-boton" id="boton-card">Agregar al carrito</button>
-            </div>
-          </div>
-        </div>
+      <section class="productos" id="seccion_productos">
+        <div class="container_productos" id="container_productos"></div>
       </section>
     </section>
     <footer>
@@ -208,6 +132,8 @@
         ©Copyrigth 2024 | Dulces Delicias | Creado por AvrilAO
       </div>
     </footer>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/productos.js"></script>
+    <script type="module" src="js/inicio.js"></script>
+    <script type="module" src="js/carrito.js"></script>
 </body>
 </html>
