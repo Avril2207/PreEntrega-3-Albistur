@@ -1,0 +1,47 @@
+[
+    {"nombre": "Torta Láminas de Chocolate Bicolor",
+     "precio": 105,
+     "imagen": "./img/torta láminas de chocolate bicolor.jpg",
+     "id": 1},
+
+    {"nombre": "Tarta de Frutos Rojos",
+     "precio": 45,
+     "imagen": "./img/tarta de frutos rojos.jpg",
+     "id": 2},
+
+    {"nombre": "Tarta de Frutos Rojos con Crumble",
+     "precio": 90,
+     "imagen": "./img/crumble de frutos rojos.jpg",
+     "id": 3},
+
+    {"nombre": "Brownie de Chocolate",
+     "precio": 50,
+     "imagen": "./img/brownie.jpg",
+     "id": 4},
+
+    {"nombre": "Tarta Red Velvet con Crema de Queso",
+     "precio": 70,
+     "imagen": "./img/Torta Red Velvet Con crema queso.jpg",
+     "id": 5},
+
+    {"nombre": "Pasta Frola",
+     "precio": 70,
+     "imagen": "./img/pasta frola.jpg",
+     "id": 6},
+
+    {"nombre": "Carrot Cake",
+     "precio": 75,
+     "imagen": "./img/Carrot Cake.jpg",
+     "id": 7},
+
+    {"nombre": "Cookies con Chispas",
+     "precio": 20,
+     "imagen": "./img/cookie.jpg",
+     "id": 8},
+
+    {"nombre": "Cupecakes de Oreo",
+     "precio": 50,
+     "imagen": "./img/Cupecakes.jpg",
+     "id": 9}
+]
+

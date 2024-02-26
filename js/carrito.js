@@ -1,9 +1,9 @@
+
 //VARIABLES DOM
-const carritoMostrar = document.querySelector(".icon-cart")
-const containerCartProducts = document.querySelector(".container-cart-products")
+const carritoMostrar = document.querySelector(".icon-cart");
+const containerCartProducts = document.querySelector(".container-cart-products");
 const listaProductos = document.getElementById("seccion_productos");
-const productosEnCarrito = document.querySelector('.row-product')
-const productosDisponibles = JSON.parse(localStorage.getItem("productos"));
+const productosEnCarrito = document.querySelector('.row-product');
 let totalAPagar = document.getElementById('total-pagar');
 const CARRITO = []; 
 
@@ -15,8 +15,8 @@ const sumarTotal = () =>{
     let carritoJSON = JSON.parse(localStorage.getItem("carrito"));
     let total = 0;
     carritoJSON.forEach(producto => {
-        let precio = parseInt(producto.precio.slice(1));
-        total += precio; 
+        let precio = (parseInt(producto.precio.slice(1))) * producto.cantidad;
+        total += precio
     });
     totalAPagar.innerText = `$${total}`;
 }
@@ -26,7 +26,7 @@ const agregarAlCarrito = () =>{
     productosEnCarrito.innerHTML = ""; //para limpiar el HTML
 
         CARRITO.forEach(producto => {
-        let containerProduct = document.createElement('div');//para crear un div con cada elemento nuevo en el carrito
+        const containerProduct = document.createElement('div');//para crear un div con cada elemento nuevo en el carrito
         containerProduct.classList.add('productos-carrito')
 
         containerProduct.innerHTML = `
@@ -55,19 +55,20 @@ const agregarAlCarrito = () =>{
     localStorage.setItem('carrito', JSON.stringify(CARRITO));
     sumarTotal()
     });
+
+
 };
 //PARA ELIMINAR PRODUCTO DEL CARRITO------------------------------------------------
 const eliminarProducto = (productoId) => { // Recibe el ID del producto a eliminar
     let carritoJSON = JSON.parse(localStorage.getItem("carrito"));
     const index = carritoJSON.findIndex(item => item.id === productoId);
-    if (index !== -1) {
-        carritoJSON.splice(index, 1);
+    index !== 1 && carritoJSON.splice(index, 1);
         CARRITO.splice(index, 1);
         localStorage.setItem('carrito', JSON.stringify(carritoJSON));
-        agregarAlCarrito()
+        agregarAlCarrito();
         sumarTotal(); 
-    }
 };
+
 
 //FIN DE LAS FUNCIONES //////////////////////////////////////////////////////////////
 
@@ -78,17 +79,37 @@ carritoMostrar.addEventListener('click', ()=>{//para mostrar y esconder el carri
 //////////////////////////////////////////////////////////////////////////
 //para que c/vez que se agrege un producto este aparezca en el carrito
 listaProductos.addEventListener('click', e => {
+    
     if (e.target.classList.contains('card-boton')){
-        const producto = e.target.parentElement;
-        const infoProducto = {
-            cantidad: 1,
-            nombre: producto.querySelector('p').textContent,
-            precio: producto.querySelector('h1').textContent,
-            id: producto.querySelector('button').id
-        };
+        Toastify({
+            text: "PRODUCTO AÑADIDO AL CARRITO",
+            duration: 3000,
+            close: true,
+            gravity:"bottom",
+            style: {
+                background: "#D9B2A9"
+            }
+          }).showToast();
 
-        CARRITO.push(infoProducto);
+          const id = e.target.parentElement.querySelector('button').id;
+          const productosEnCarrito = CARRITO.find(producto => producto.id === id);
+
+          if (productosEnCarrito == undefined){
+            const producto = e.target.parentElement;
+            let infoProducto = {
+                cantidad: 1,
+                nombre: producto.querySelector('p').textContent,
+                precio: producto.querySelector('h1').innerText,
+                id: producto.querySelector('button').id
+          }
+            CARRITO.push(infoProducto);
+        }else{
+            const indexProductoCarrito = CARRITO.findIndex((producto) => producto.id == id);
+            CARRITO[indexProductoCarrito].cantidad++;
+        }
         agregarAlCarrito();
+        
+        
     }
 })
 ////////////////////////////////////////////////////////////////////////
@@ -103,3 +124,9 @@ productosEnCarrito.addEventListener('click', (e)=>{
     };
 })
 
+//Para recuperar el carrito del storage
+
+let carritoRecuperado = [];
+let carritoEnStorage = JSON.parse(localStorage.getItem("carrito"))
+
+//FALTA ENCOCNTRAR UNA FORMA DE RECUPERAR EL CONTENIDO DEL STORAGE Y VOLVERLO A MOSTRAR

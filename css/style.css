@@ -40,22 +40,6 @@ header nav .container-icon .icon-cart {
 header nav .container-icon .icon-cart:hover {
   cursor: pointer;
 }
-header nav .container-icon .count-products {
-  position: absolute;
-  top: 55%;
-  right: 0;
-  background-color: #000;
-  color: #fff;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-}
-header nav .container-icon #contador-productos {
-  font-size: 12px;
-}
 header nav .container-icon .container-cart-products {
   position: absolute;
   top: 50px;
