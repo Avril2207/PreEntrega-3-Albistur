@@ -5,16 +5,18 @@ const containerCartProducts = document.querySelector(".container-cart-products")
 const listaProductos = document.getElementById("seccion_productos");
 const productosEnCarrito = document.querySelector('.row-product');
 let totalAPagar = document.getElementById('total-pagar');
-const CARRITO = []; 
+const CARRITO = JSON.parse(localStorage.getItem("carrito")) || []; 
 
 
 //FUNCIONES-----------------------------------------------
-
+//PARA GUARDAR EL CARRITO EN EL STORAGE
+const guardarStorage = (carrito) =>{
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
 //PARA SUMAR EL TOTAL-------------------------------------
 const sumarTotal = () =>{
-    let carritoJSON = JSON.parse(localStorage.getItem("carrito"));
     let total = 0;
-    carritoJSON.forEach(producto => {
+    CARRITO.forEach(producto => {
         let precio = (parseInt(producto.precio.slice(1))) * producto.cantidad;
         total += precio
     });
@@ -24,7 +26,7 @@ const sumarTotal = () =>{
 //PARA AGREGAR ELEMENTOS AL CARRITO--------------------------------------------------------------
 const agregarAlCarrito = () =>{
     productosEnCarrito.innerHTML = ""; //para limpiar el HTML
-
+    
         CARRITO.forEach(producto => {
         const containerProduct = document.createElement('div');//para crear un div con cada elemento nuevo en el carrito
         containerProduct.classList.add('productos-carrito')
@@ -52,25 +54,27 @@ const agregarAlCarrito = () =>{
         </svg>
     `
     productosEnCarrito.append(containerProduct);
-    localStorage.setItem('carrito', JSON.stringify(CARRITO));
-    sumarTotal()
+    guardarStorage(CARRITO);
+    sumarTotal();
     });
 
 
 };
+
 //PARA ELIMINAR PRODUCTO DEL CARRITO------------------------------------------------
 const eliminarProducto = (productoId) => { // Recibe el ID del producto a eliminar
-    let carritoJSON = JSON.parse(localStorage.getItem("carrito"));
-    const index = carritoJSON.findIndex(item => item.id === productoId);
-    index !== 1 && carritoJSON.splice(index, 1);
-        CARRITO.splice(index, 1);
-        localStorage.setItem('carrito', JSON.stringify(carritoJSON));
+    const index = CARRITO.findIndex(item => item.id === productoId);
+    index !== 1 && CARRITO.splice(index, 1);
+        guardarStorage(CARRITO);
         agregarAlCarrito();
         sumarTotal(); 
 };
 
 
 //FIN DE LAS FUNCIONES //////////////////////////////////////////////////////////////
+
+//Ttraer el carrito del storage en caso de existir
+CARRITO && agregarAlCarrito();
 
 //Para mostrar el carrito
 carritoMostrar.addEventListener('click', ()=>{//para mostrar y esconder el carrito
@@ -108,8 +112,6 @@ listaProductos.addEventListener('click', e => {
             CARRITO[indexProductoCarrito].cantidad++;
         }
         agregarAlCarrito();
-        
-        
     }
 })
 ////////////////////////////////////////////////////////////////////////
@@ -117,16 +119,8 @@ listaProductos.addEventListener('click', e => {
 //Para eliminar producto
 productosEnCarrito.addEventListener('click', (e)=>{
     if (e.target.classList.contains('icon-close')){
-        const productoElementoPadre = e.target.parentElement
-        const productoAEliminar = productoElementoPadre.querySelector('svg').id
-        eliminarProducto(productoAEliminar);
-        
+        const productoElementoPadre = e.target.parentElement.querySelector('svg').id
+        eliminarProducto(productoElementoPadre);
     };
 })
 
-//Para recuperar el carrito del storage
-
-let carritoRecuperado = [];
-let carritoEnStorage = JSON.parse(localStorage.getItem("carrito"))
-
-//FALTA ENCOCNTRAR UNA FORMA DE RECUPERAR EL CONTENIDO DEL STORAGE Y VOLVERLO A MOSTRAR
